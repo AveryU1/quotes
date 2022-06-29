@@ -1,5 +1,7 @@
 import { useState } from "react";
 import quotes from "../quotes.json";
+import Authors from "./Authors";
+import Button from "./Button";
 let colors = [
   "#34EF51",
   "#00D183",
@@ -22,7 +24,7 @@ const QuoteBox = () => {
   const randomQuotes = Math.floor(Math.random() * quotes.length);
   const [index, setIndex] = useState(randomQuotes);
 
-  const changeCita = () => {
+  const changeQuote = () => {
     let random = Math.floor(Math.random() * quotes.length);
     setIndex(random);
   };
@@ -41,13 +43,9 @@ const QuoteBox = () => {
         <div style={{ textAlign: "right" }}>
           <i class="fa-solid fa-quote-right"></i>
         </div>
-        <p style={{ textAlign: "right" }}>{quotes[index].author}</p>
+        <Authors color={color} index={index}></Authors>
       </div>
-      <div className="btn-container">
-        <button className="btn" onClick={changeCita}>
-          <i class="fa-solid fa-angle-right" style={{ color: color }}></i>
-        </button>
-      </div>
+      <Button color={color} changeQuote={changeQuote}></Button>
     </div>
   );
 };
